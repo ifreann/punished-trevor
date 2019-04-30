@@ -221,7 +221,7 @@ function mockLast(message) {
 			const lastMessage = lastMessages.last().content;
 			if (!lastMessage) return;
 			const mockedMessage = addOs(spongeCase(lastMessage));
-			const getEmoji = str => client.emojis.find(v => v.name === str).toString();
+			const getEmoji = str => (client.emojis.find(v => v.name === str) || '') + '';
 			message.channel.send(`${getEmoji('pepega')} 📣 ${mockedMessage}`);
 		})
 		.catch(console.error);
