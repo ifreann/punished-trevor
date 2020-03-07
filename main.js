@@ -20,6 +20,9 @@ client.on('message', message => {
 	else if (message.content.match(/h+\s*o+\s*n+\s*k+/i)) {
 		honk(message);
 	}
+	else if (message.content.match(/mikefoot/i)) {
+		mikefoot(message);
+	}
 	// if someone says '!slots':
 	else if (message.content.startsWith('!slots')) {
 		slots(message);
@@ -108,6 +111,19 @@ function honk(message) {
 		color: 0x36393F,
 		image: {
 			url: "https://i.imgur.com/H8prJzb.png"
+		}
+	});
+
+	message.channel.send(embed);
+
+}
+
+function mikefoot(message) {
+
+	const embed = new Discord.RichEmbed({
+		color: 0x36393F,
+		image: {
+			url: "https://i.imgur.com/YkTM41E.png"
 		}
 	});
 
