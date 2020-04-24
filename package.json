@@ -3,8 +3,10 @@
   "version": "1.0.0",
   "description": "This is a Discord bot that says \"ut ogh\" instead of \"uh oh\".",
   "main": "main.js",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node main"
   },
   "repository": {
     "type": "git",
@@ -17,7 +19,9 @@
   },
   "homepage": "https://github.com/ifreann/punished-trevor#readme",
   "dependencies": {
-    "discord.js": "^11.4.2",
-    "lowdb": "^1.0.0"
+    "discord.js": "^11.4.2"
+  },
+  "engines": {
+    "node": "14.x"
   }
 }
