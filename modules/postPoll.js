@@ -1,83 +1,65 @@
+/* 
+
+https://github.com/saanuregh/discord.js-poll-embed#readme
+
+*/
+
 export default postPoll;
 
+import getEmoji from './getEmoji.js';
 import Discord from 'discord.js';
-const { MessageEmbed } = Discord;
 
-const defEmojiList = [
-	'\u0031\u20E3',
-	'\u0032\u20E3',
-	'\u0033\u20E3',
-	'\u0034\u20E3',
-	'\u0035\u20E3',
-	'\u0036\u20E3',
-	'\u0037\u20E3',
-	'\u0038\u20E3',
-	'\u0039\u20E3',
-	'\uD83D\uDD1F'
-];
+async function postPoll(message) {
 
-async function postPoll(msg, title, options, timeout = 30, emojiList = defEmojiList.slice(), forceEndPollEmoji = '\u2705') {
+	const optionEmojis = ['one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'none', 'ten']
+		.map(v => getEmoji(v));
 
-	if (!msg && !msg.channel) return msg.reply('Channel is inaccessible.');
-	if (!title) return msg.reply('Poll title is not given.');
-	if (!options) return msg.reply('Poll options are not given.');
-	if (options.length < 2) return msg.reply('Please provide more than one choice.');
-	if (options.length > emojiList.length) return msg.reply(`Please provide ${emojiList.length} or less choices.`);
+	const [title, ...options] = a.slice(6).split(/\s*\|\s*/);
 
-	let text = `*To vote, react using the correspoding emoji.\nThe voting will end in **${timeout} seconds**.\nPoll creater can end the poll **forcefully** by reacting to ${forceEndPollEmoji} emoji.*\n\n`;
-	const emojiInfo = {};
-	for (const option of options) {
-		const emoji = emojiList.splice(0, 1);
-		emojiInfo[emoji] = { option: option, votes: 0 };
-		text += `${emoji} : \`${option}\`\n\n`;
-	}
-	const usedEmojis = Object.keys(emojiInfo);
-	usedEmojis.push(forceEndPollEmoji);
+	if (!title) message.reply('polls need a title. Correct format is `!poll title of poll | option 1 | option 2`.');
+	else if (!options || options.length < 3) message.reply('polls need a minimum of 2 options. Correct format is `!poll title of poll | option 1 | option 2`.');
 
-	const poll = await msg.channel.send(embedBuilder(title, msg.author.tag).setDescription(text));
-	for (const emoji of usedEmojis) await poll.react(emoji);
-
-	const reactionCollector = poll.createReactionCollector(
-		(reaction, user) => usedEmojis.includes(reaction.emoji.name) && !user.bot,
-		timeout === 0 ? {} : { time: timeout * 1000 }
-	);
-	const voterInfo = new Map();
-	reactionCollector.on('collect', (reaction, user) => {
-		if (usedEmojis.includes(reaction.emoji.name)) {
-			if (reaction.emoji.name === forceEndPollEmoji && msg.author.id === user.id) return reactionCollector.stop();
-			if (!voterInfo.has(user.id)) voterInfo.set(user.id, { emoji: reaction.emoji.name });
-			const votedEmoji = voterInfo.get(user.id).emoji;
-			if (votedEmoji !== reaction.emoji.name) {
-				const lastVote = poll.reactions.get(votedEmoji);
-				lastVote.count -= 1;
-				lastVote.users.remove(user.id);
-				emojiInfo[votedEmoji].votes -= 1;
-				voterInfo.set(user.id, { emoji: reaction.emoji.name });
-			}
-			emojiInfo[reaction.emoji.name].votes += 1;
+	// create image embed
+	const embed = new Discord.RichEmbed({
+		color: 0x36393F,
+		title: title,
+		author: { name: message.author },
+		fields: [{
+				name: 'Regular field title',
+				value: 'Some value here',
+			},
+			{
+				name: '\u200b',
+				value: '\u200b',
+				inline: false,
+			},
+			{
+				name: 'Inline field title',
+				value: 'Some value here',
+				inline: true,
+			},
+			{
+				name: 'Inline field title',
+				value: 'Some value here',
+				inline: true,
+			},
+			{
+				name: 'Inline field title',
+				value: 'Some value here',
+				inline: true,
+			},
+		],
+		timestamp: new Date(),
+		footer: {
+			text: 'Some footer text here',
+			icon_url: 'https://i.imgur.com/wSTFkRM.png',
 		}
 	});
 
-	reactionCollector.on('dispose', (reaction, user) => {
-		if (usedEmojis.includes(reaction.emoji.name)) {
-			voterInfo.delete(user.id);
-			emojiInfo[reaction.emoji.name].votes -= 1;
-		}
-	});
+	// send initial embed
+	message.channel.send(embed);
 
-	reactionCollector.on('end', () => {
-		text = '*Ding! Ding! Ding! Time\'s up!\n Results are in,*\n\n';
-		for (const emoji in emojiInfo) text += `\`${emojiInfo[emoji].option}\` - \`${emojiInfo[emoji].votes}\`\n\n`;
-		poll.delete();
-		msg.channel.send(embedBuilder(title, msg.author.tag).setDescription(text));
-	});
-
-}
-
-function embedBuilder(title, author) {
-
-	return new MessageEmbed()
-		.setTitle(`Poll - ${title}`)
-		.setFooter(`Poll created by ${author}`);
+	// react to embed with options
+	message.react('yada yada');
 
 }

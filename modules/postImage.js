@@ -4,8 +4,9 @@ import Discord from 'discord.js';
 
 // links to images to be posted in embed object
 const images = {
-	honk: "https://i.imgur.com/H8prJzb.png",
-	mikefoot: "https://i.imgur.com/YkTM41E.png"
+	honk: 'https://i.imgur.com/H8prJzb.png',
+	mikefoot: 'https://i.imgur.com/YkTM41E.png',
+	exasperatedPepe: 'https://i.imgur.com/VG3DkWB.jpg'
 }
 
 // seconds before users can trigger this module again

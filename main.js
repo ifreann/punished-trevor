@@ -25,6 +25,7 @@ client.on('message', message => {
 	const authorIsTrevor = message.author.id === '510803012445274112';
 	const authorIsDarren = message.author.id === '71612859766800384';
 	const authorIsMike = message.author.id === '141641930349084672';
+	const authorIsHarry = message.author.id === '210155641468223499';
 	const content = message.content;
 
 	// ignore Trevor
@@ -32,6 +33,7 @@ client.on('message', message => {
 
 	// text match triggers
 	if (content.match(/^!e /) && authorIsDarren) evaluate(message);
+	else if (authorIsHarry && content.match(/sea of thieves/i)) postImage(message, 'exasperatedPepe');
 	else if (content.match(/^!say /) && authorIsDarren) say(message);
 	else if (content.match(/^!poll/)) postPoll(message);
 	else if (content.match(/honk/i)) postImage(message, 'honk');
