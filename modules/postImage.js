@@ -28,7 +28,7 @@ function postImage(message, image) {
 	// if the image was postedRecently, do nothing. Otherwise, put a cooldown on the posted image so it can't be spammed
 	if (!postedRecently.has(image)) {
 		message.channel.send(embed);
-		if (message.content === 'mikefoot') message.delete(); // delete the message if it's 'mikefoot' and nothing else to entertain Chris
+		if (message.content.match(/^mikefoot$/i)) message.delete(); // delete the message if it's 'mikefoot' and nothing else to entertain Chris
 		postedRecently.add(image);
 		setTimeout(() => postedRecently.delete(image), cooldown * 1000);
 	}
