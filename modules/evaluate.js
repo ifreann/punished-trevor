@@ -7,6 +7,7 @@
 export default evaluate;
 
 import util from 'util';
+import { client } from '../main.js';
 
 function evaluate(message) {
 

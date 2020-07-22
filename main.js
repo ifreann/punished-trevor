@@ -11,6 +11,7 @@ import postPoll from './modules/postPoll.js';
 import say from './modules/say.js';
 import slots from './modules/slots.js';
 import utOgh from './modules/utOgh.js';
+import togglePin from './modules/togglePin.js';
 
 // have Trevor log in. Does nothing if he's already logged in
 client.login(process.env.BOT_TOKEN);
@@ -34,6 +35,7 @@ client.on('message', message => {
 	// text match triggers
 	if (content.match(/^!e /) && authorIsDarren) evaluate(message);
 	else if (authorIsHarry && content.match(/sea of thieves/i)) postImage(message, 'exasperatedPepe');
+	else if (content.match(/^!(un|)pin /)) togglePin(message);
 	else if (content.match(/^!say /) && authorIsDarren) say(message);
 	else if (content.match(/^!poll/)) postPoll(message);
 	else if (content.match(/honk/i)) postImage(message, 'honk');
