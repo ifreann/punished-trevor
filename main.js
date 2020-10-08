@@ -4,6 +4,7 @@ export const client = new Discord.Client(); // makes `client` available to modul
 // import modules
 import acceptCriticism from './modules/acceptCriticism.js';
 import evaluate from './modules/evaluate.js';
+import gabagool from './modules/gabagool.js';
 import mock from './modules/mock.js';
 import poopMike from './modules/poopMike.js';
 import postImage from './modules/postImage.js';
@@ -38,6 +39,7 @@ client.on('message', message => {
 	else if (content.match(/^!(un|)pin /)) togglePin(message);
 	else if (content.match(/^!say /) && authorIsDarren) say(message);
 	else if (content.match(/^!poll/)) postPoll(message);
+	else if (content.match(/^gabagool/i)) gabagool(message);
 	else if (content.match(/honk/i)) postImage(message, 'honk');
 	else if (content.match(/mikefoot/i)) postImage(message, 'mikefoot');
 	else if (content === '!slots') slots(message);
