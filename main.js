@@ -43,6 +43,7 @@ client.on('message', message => {
 	else if (content.match(/honk/i)) postImage(message, 'honk');
 	else if (content.match(/peepoClap/i)) postImage(message, 'peepoClap');
 	else if (content.match(/widepeepoHappy/i)) postImage(message, 'widepeepoHappy');
+	else if (content.match(/pepeLaugh/i)) postImage(message, 'pepeLaugh');
 	else if (content.match(/mikefoot/i)) postImage(message, 'mikefoot');
 	else if (content === '!slots') slots(message);
 	else if (content.match(/\bu+\s*t+\s*o+\s*g+\s*h+\b/i)) utOgh(message);

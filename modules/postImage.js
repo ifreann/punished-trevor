@@ -26,6 +26,11 @@ const images = {
 		url: 'https://cdn.discordapp.com/attachments/517382587090731008/750353440680443914/4.png',
 		cooldown: 0,
 		deleteTriggerMessage: true
+	},
+	pepeLaugh: {
+		url: 'https://cdn.discordapp.com/attachments/517382587090731008/765565883237007431/pepelaugh.gif',
+		cooldown: 0,
+		deleteTriggerMessage: true
 	}
 };
 
@@ -38,7 +43,7 @@ function postImage(message, imageReference) {
 
 	const messageOnlyContainsTrigger = message.content.match(RegExp(`^${imageReference}$`, 'i'));
 
-	// if the image was postedRecently, do nothing. Otherwise, put a cooldown on the posted image so it can't be spammed
+	// if the image was postedRecently, put a cooldown on the posted image so it can't be spammed
 	if (!postedRecently.has(imageReference)) {
 		message.channel.send(url);
 		if (deleteTriggerMessage && messageOnlyContainsTrigger) message.delete();
