@@ -63,7 +63,7 @@ async function poll(message) {
 
 	// determine if a valid number of answers have been provided
 	const tooFewAnswers = args.length < 3;
-	const tooManyAnswers = args.length > 31;
+	const tooManyAnswers = args.length > 30;
 	if (tooFewAnswers) return message.reply(minArgsResponse);
 	if (tooManyAnswers) return message.reply(maxArgsResponse);
 
