@@ -8,7 +8,7 @@ import gabagool from './modules/gabagool.js';
 import mock from './modules/mock.js';
 import poopMike from './modules/poopMike.js';
 import postImage from './modules/postImage.js';
-import postPoll from './modules/postPoll.js';
+import poll from './modules/poll.js';
 import say from './modules/say.js';
 import slots from './modules/slots.js';
 import utOgh from './modules/utOgh.js';
@@ -28,17 +28,17 @@ client.on('message', message => {
 	const authorIsDarren = message.author.id === '71612859766800384';
 	const authorIsMike = message.author.id === '141641930349084672';
 	const authorIsHarry = message.author.id === '210155641468223499';
-	const content = message.content;
+	const { content } = message;
 
 	// ignore Trevor
 	if (authorIsTrevor) return;
 
 	// text match triggers
 	if (content.match(/^!e /) && authorIsDarren) evaluate(message);
+	else if (content.match(/^!poll/)) poll(message);
 	else if (authorIsHarry && content.match(/sea of thieves/i)) postImage(message, 'exasperatedPepe');
 	else if (content.match(/^!(un|)pin /)) togglePin(message);
 	else if (content.match(/^!say /) && authorIsDarren) say(message);
-	else if (content.match(/^!poll/)) postPoll(message);
 	else if (content.match(/^gabagool/i)) gabagool(message);
 	else if (content.match(/honk/i)) postImage(message, 'honk');
 	else if (content.match(/peepoClap/i)) postImage(message, 'peepoClap');

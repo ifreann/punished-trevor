@@ -19,7 +19,9 @@
   },
   "homepage": "https://github.com/ifreann/punished-trevor#readme",
   "dependencies": {
-    "discord.js": "^11.4.2"
+    "date-fns": "^2.16.1",
+    "discord.js": "^11.4.2",
+    "node-fetch": "^2.6.1"
   },
   "engines": {
     "node": "14.x"
