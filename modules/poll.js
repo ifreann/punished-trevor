@@ -21,7 +21,7 @@ const durationShortResponse = `good one! Changing the poll duration to **one min
 const durationLongResponse = `nobody needs this much time to decide anything. Changing the poll duration to **one hour**.`;
 const helpResponse = `to create a poll, type your command like this:
 	
-\`!poll {{question}}, {{answer 1}}, {{answer 2}}... etc., {{optional: duration}}\`
+\`!poll question, answer 1, answer 2... etc., (optional) duration\`
 
 To make sure this works:
 
@@ -63,7 +63,7 @@ async function poll(message) {
 
 	// determine if a valid number of answers have been provided
 	const tooFewAnswers = args.length < 3;
-	const tooManyAnswers = args.length > 30;
+	const tooManyAnswers = args.length > 31;
 	if (tooFewAnswers) return message.reply(minArgsResponse);
 	if (tooManyAnswers) return message.reply(maxArgsResponse);
 
@@ -98,7 +98,8 @@ async function createPoll(title, answers, deadline) {
 				"deadline": deadline
 			}
 		})
-	});
+	})
+	.catch(e => console.error(e));
 
 	const json = await response.json();
 	
