@@ -10,9 +10,8 @@ export default poll;
 
 import fetch from 'node-fetch';
 import addMinutes from 'date-fns/addMinutes/index.js';
-const defaultPollDuration = 1; // minutes
-const apiKey = process.env.STRAWPOLL_API_KEY || '13Y1CDQ6DZK12QZRYJPS8A7A8CVEO3US';
-const activePolls = new Set();
+const defaultPollDuration = 5; // minutes
+const apiKey = process.env.STRAWPOLL_API_KEY;
 const delimiterResponse = `put commas **or** pipes (|'s) between your question/answers. Type !poll for more help.`;
 const minArgsResponse = `not enough answers provided - you need 2 at a minimum. Type !poll for more help.`;
 const maxArgsResponse = `too many answers provided - you can only have 30 max. Type !poll for more help.`;
@@ -44,7 +43,7 @@ async function poll(message) {
 
 	// define the delimiter and split the message into its arguments accordingly
 	const delimiter = content.match(/\|/) ? '|' : ',';
-	const args = content.substring(6).split(RegExp(`${delimiter}\s*`));
+	const args = content.split(/!poll\s*/)[1].split(RegExp(`${delimiter}\s*`));
 
 	// determine if a duration was specified. If it was, store the duration and chop it off the end of the list of arguments
 	let duration = defaultPollDuration;
@@ -78,7 +77,24 @@ async function poll(message) {
 	// return early if something went wrong creating the poll
 	if (!pollID) return message.reply(createPollErrorResponse);
 
-	message.channel.send(`Great success! New poll created at https://strawpoll.com/${pollID}.`);
+	const url = `https://strawpoll.com/${pollID}`;
+
+	message.reply(`success! New poll created at ${url}\n\nVoting will end in **${duration} minute${duration > 1 ? 's' : ''}!**`);
+
+	// around the time the poll expires, announce the result in the chat
+	setTimeout(async () => {
+		const answers = await getPollAnswers(pollID);
+		answers.sort((a, b) => a.votes < b.votes ? 1 : -1);
+		message.channel.send(`The poll at ${url}/r has concluded.
+
+**${title}**
+
+${answers.map(v => `**${v.answer}:** ${v.votes}`).join('\n')}
+		`)
+	}, duration * 60000);
+
+	// delete the poll a day later
+	setTimeout(() => deletePoll(pollID), 8.64e+7);
 
 }
 
@@ -102,14 +118,16 @@ async function createPoll(title, answers, deadline) {
 	.catch(e => console.error(e));
 
 	const json = await response.json();
+
+	const pollID = json.content_id;
 	
-	return json.content_id;
+	return pollID;
 
 }
 
-function getPoll(pollID) {
 
-	return fetch(`https://strawpoll.com/api/poll/${pollID}`, {
+async function getPollAnswers(pollID) {
+	const response = await fetch(`https://strawpoll.com/api/poll/${pollID}`, {
 		method: 'GET',
 		headers: {
 			'API-KEY': apiKey,
@@ -118,11 +136,15 @@ function getPoll(pollID) {
 	})
 	.catch(e => console.error(e));
 
+	const json = await response.json();
+
+	return json.content.poll.poll_answers;
+
 }
 
-function deletePoll(pollID) {
+async function deletePoll(pollID) {
 
-	return fetch('https://strawpoll.com/api/content/delete', {
+	const response = fetch('https://strawpoll.com/api/content/delete', {
 		method: 'DELETE',
 		headers: {
 			'API-KEY': apiKey,
@@ -131,9 +153,6 @@ function deletePoll(pollID) {
 		body: JSON.stringify({
 			"content_id": pollID
 		})
-	})
-	.then(response => {
-		if (response.statusText === '200') activePolls.delete(pollID);
 	})
 	.catch(e => console.error(e));
 
