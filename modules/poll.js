@@ -68,7 +68,7 @@ async function poll(message) {
 	if (tooManyAnswers) return message.reply(maxArgsResponse);
 
 	// calculate the end date of the poll
-	const deadline = addMinutes(new Date(), duration) + '';
+	const deadline = addMinutes(new Date(), duration);
 
 	const [title, ...answers] = args;
 
