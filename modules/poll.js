@@ -39,7 +39,7 @@ async function poll(message) {
 	if (messageHasNoParameters) return message.reply(helpResponse);
 
 	// if the message doesn't have a , or |, explain the need for delimiters
-	const messageHasNoValidDelimiters = content.match(/\||,/);
+	const messageHasNoValidDelimiters = !content.match(/\||,/);
 	if (messageHasNoValidDelimiters) return message.reply(delimiterResponse);
 
 	// define the delimiter and split the message into its arguments accordingly
