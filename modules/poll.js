@@ -44,7 +44,7 @@ async function poll(message) {
 
 	// define the delimiter and split the message into its arguments accordingly
 	const delimiter = content.match('|') ? '|' : ',';
-	const args = content.split(RegExp(`${delimiter}\s*`));
+	const args = content.substring(6).split(RegExp(`${delimiter}\s*`));
 
 	// determine if a duration was specified. If it was, store the duration and chop it off the end of the list of arguments
 	let duration = defaultPollDuration;
