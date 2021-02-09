@@ -34,7 +34,7 @@ client.on('message', message => {
 	if (authorIsTrevor) return;
 
 	// text match triggers
-	if (content.match(/^!e /) && authorIsDarren) evaluate(message);
+	if (content.match(/^!e /) && authorIsDarren) evaluate(message, client);
 	else if (content.match(/^!poll/)) poll(message);
 	else if (authorIsHarry && content.match(/sea of thieves/i)) postImage(message, 'exasperatedPepe');
 	else if (content.match(/^!(un|)pin /)) togglePin(message);

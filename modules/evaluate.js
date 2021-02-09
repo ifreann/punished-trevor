@@ -7,9 +7,8 @@
 export default evaluate;
 
 import util from 'util';
-import { client } from '../main.js';
 
-function evaluate(message) {
+function evaluate(message, client) {
 
 	const args = message.content.split(' ').slice(1);
 	const isPromise = p => p.then ? true : false;
