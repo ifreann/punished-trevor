@@ -7,6 +7,11 @@ const images = {
 		cooldown: 60,
 		deleteTriggerMessage: false
 	},
+	jose: {
+		url: 'https://cdn.discordapp.com/attachments/348582277342560257/855118688389431336/Screen_Shot_2021-04-21_at_2.png',
+		cooldown: 60,
+		deleteTriggerMessage: false
+	},
 	mikefoot: {
 		url: 'https://i.imgur.com/YkTM41E.png',
 		cooldown: 60,
