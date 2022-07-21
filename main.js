@@ -1,5 +1,5 @@
-import {Client, Intents} from 'discord.js';
-export const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] });
+import Discord from 'discord.js';
+export const client = new Discord.Client(); // makes `client` available to modules
 
 // import modules
 import acceptCriticism from './modules/acceptCriticism.js';
@@ -17,8 +17,6 @@ import evoWhen from './modules/evoWhen.js';
 
 // have Trevor log in. Does nothing if he's already logged in
 client.login(process.env.BOT_TOKEN);
-
-console.log(process.env.BOT_TOKEN);
 
 // generic error/warning handling so Trevor doesn't just crash
 client.on('error', e => console.error(e));
