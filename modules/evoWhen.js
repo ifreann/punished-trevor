@@ -1,7 +1,7 @@
 export default evoWhen;
 
 import dayjs from "dayjs";
-// import getEmoji from './getEmoji.js';
+import getEmoji from './getEmoji.js';
 
 function evoWhen(message) {
 
