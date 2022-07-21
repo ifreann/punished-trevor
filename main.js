@@ -1,5 +1,5 @@
-import Discord from 'discord.js';
-export const client = new Discord.Client(); // makes `client` available to modules
+import {Client, Intents} from 'discord.js';
+export const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] });
 
 // import modules
 import acceptCriticism from './modules/acceptCriticism.js';
@@ -13,9 +13,12 @@ import say from './modules/say.js';
 import slots from './modules/slots.js';
 import utOgh from './modules/utOgh.js';
 import togglePin from './modules/togglePin.js';
+import evoWhen from './modules/evoWhen.js';
 
 // have Trevor log in. Does nothing if he's already logged in
 client.login(process.env.BOT_TOKEN);
+
+console.log(process.env.BOT_TOKEN);
 
 // generic error/warning handling so Trevor doesn't just crash
 client.on('error', e => console.error(e));
@@ -50,6 +53,7 @@ client.on('message', message => {
 	else if (content.match(/\bu+\s*t+\s*o+\s*g+\s*h+\b/i)) utOgh(message);
 	else if (content.match(/^mock/i)) mock(message);
 	else if (content.match(/\b(good|bad)\s*bot\b/i)) acceptCriticism(message);
+	else if (content.match(/^evo when$/i)) evoWhen(message);
 	
 	// always has a chance to trigger
 	if (authorIsMike) poopMike(message);
