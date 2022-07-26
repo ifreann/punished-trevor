@@ -36,6 +36,11 @@ const images = {
 		url: 'https://cdn.discordapp.com/attachments/517382587090731008/765565883237007431/pepelaugh.gif',
 		cooldown: 0,
 		deleteTriggerMessage: true
+	},
+	eoin: {
+		url: "https://cdn.discordapp.com/attachments/348582277342560257/971098566447730788/Screenshot_20220503-181811__01.jpg",
+		cooldown: 0,
+		deleteTriggerMessage: false
 	}
 };
 

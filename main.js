@@ -52,6 +52,7 @@ client.on('message', message => {
 	else if (content.match(/^mock/i)) mock(message);
 	else if (content.match(/\b(good|bad)\s*bot\b/i)) acceptCriticism(message);
 	else if (content.match(/^evo when$/i)) evoWhen(message);
+	else if (content.match(/^!eoin$/i)) postImage(message, 'eoin');
 	
 	// always has a chance to trigger
 	if (authorIsMike) poopMike(message);
