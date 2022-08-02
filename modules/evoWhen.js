@@ -7,9 +7,12 @@ function evoWhen(message) {
 
 	const now = dayjs();
 	const evo = dayjs(1659726000000);
+	const evoEnds = dayjs(1659873600000);
 
-	// if evo already passed
-	if (now.isAfter(evo)) return message.channel.send(`${getEmoji('despair')}👍`);
+	// if evo is over
+	if (now.isAfter(evoEnds)) return message.channel.send(`${getEmoji('despair')}👍`);
+	// if evo is underway
+	else if (now.isAfter(evo)) return message.channel.send(`${getEmoji('despair')}👍`);
 
 	const days = evo.diff(now, 'day');	
 	const hours = evo.diff(now, 'hour') - (days * 24);
