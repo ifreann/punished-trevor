@@ -12,7 +12,7 @@ function evoWhen(message) {
 
 	// if evo is over
 	if (now.isAfter(evoEnds)) {
-		return message.react(`${getEmoji('despair')}`);
+		return message.react(1006128287828946985); // despair
 	}
 	// if evo is underway
 	else if (now.isAfter(evo)) {
