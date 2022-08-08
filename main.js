@@ -13,7 +13,6 @@ import say from './modules/say.js';
 import slots from './modules/slots.js';
 import utOgh from './modules/utOgh.js';
 import togglePin from './modules/togglePin.js';
-import evoWhen from './modules/evoWhen.js';
 
 // have Trevor log in. Does nothing if he's already logged in
 client.login(process.env.BOT_TOKEN);
@@ -51,7 +50,6 @@ client.on('message', message => {
 	else if (content.match(/\bu+\s*t+\s*o+\s*g+\s*h+\b/i)) utOgh(message);
 	else if (content.match(/^mock/i)) mock(message);
 	else if (content.match(/\b(good|bad)\s*bot\b/i)) acceptCriticism(message);
-	else if (content.match(/^evo when$/i)) evoWhen(message);
 	else if (content.match(/^!eoin$/i)) postImage(message, 'eoin');
 	
 	// always has a chance to trigger
