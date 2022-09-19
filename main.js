@@ -1,5 +1,7 @@
 import Discord from 'discord.js';
-export const client = new Discord.Client(); // makes `client` available to modules
+const GatewayIntentBits = { Discord };
+export const client = new Discord.Client({ intents: [3276799] }); // makes `client` available to modules
+let a = client;
 
 // import modules
 import acceptCriticism from './modules/acceptCriticism.js';
@@ -14,17 +16,18 @@ import slots from './modules/slots.js';
 import utOgh from './modules/utOgh.js';
 import togglePin from './modules/togglePin.js';
 
-// have Trevor log in. Does nothing if he's already logged in
-client.login(process.env.BOT_TOKEN);
-
 // generic error/warning handling so Trevor doesn't just crash
 client.on('error', e => console.error(e));
 client.on('warn', e => console.warn(e));
 
-// main event. Trevor decides how to respond every time a message is posted
-client.on('message', message => {
+// Login to Discord with your client's token
+client.login(process.env.BOT_TOKEN);
+console.log('Trevor is running...');
 
-	const authorIsTrevor = message.author.id === '510803012445274112';
+// main event. Trevor decides how to respond every time a message is posted
+client.on('messageCreate', message => {
+
+	const authorIsTrevor = message.author.id.match(/510803012445274112|1013832791420588223/);
 	const authorIsDarren = message.author.id === '71612859766800384';
 	const authorIsMike = message.author.id === '141641930349084672';
 	const authorIsHarry = message.author.id === '210155641468223499';

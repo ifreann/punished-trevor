@@ -15,6 +15,6 @@ import { client } from '../main.js';
 
 function getEmoji(str) {
 	
-	return (client.emojis.find(v => v.name === str) || '') + '';
+	return (client.emojis.cache.find(v => v.name === str));
 
 }

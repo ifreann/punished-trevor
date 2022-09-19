@@ -3,6 +3,7 @@ export default slots;
 import { client } from '../main.js';
 import getEmoji from './getEmoji.js';
 import Discord from 'discord.js';
+const { EmbedBuilder } = Discord;
 
 function slots(message) {
 
@@ -10,7 +11,7 @@ function slots(message) {
 	const difficulty = 4;
 
 	// randomly choose n emojis (where n = `difficulty`) from all available to Trevor, and put them in `symbols`
-	const allEmojis = client.emojis.map(v => v.name);
+	const allEmojis = client.emojis.cache.map(v => v.name);
 	const symbols = {};
 	let count = 1;
 	while (Object.keys(symbols).length < difficulty) {
@@ -46,7 +47,7 @@ function slots(message) {
 		'Better luck next time idiot XD';
 
 	// build Embed
-	const embed = new Discord.RichEmbed({
+	const embed = new EmbedBuilder({
 		color: 0xFDAB41,
 		title: result,
 		description: output,
@@ -60,6 +61,7 @@ function slots(message) {
 	const ascii = '```██╗    ██╗    ██╗    ███╗   ██╗    ██╗\n██║    ██║    ██║    ████╗  ██║    ██║\n██║ █╗ ██║    ██║    ██╔██╗ ██║    ██║\n██║███╗██║    ██║    ██║╚██╗██║    ╚═╝\n╚███╔███╔╝    ██║    ██║ ╚████║    ██╗\n ╚══╝╚══╝     ╚═╝    ╚═╝  ╚═══╝    ╚═╝```';
 
 	// send the embed along with the ascii if you won
-	message.channel.send(`${rows || diagonals ? ascii : ''}`, embed);
+	if (rows || diagonals) message.channel.send(ascii);
+	message.channel.send({ embeds: [embed] });
 
 }

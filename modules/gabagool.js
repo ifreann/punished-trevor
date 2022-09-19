@@ -8,7 +8,7 @@ export default gabagool;
 
 function gabagool(message) {
 
-	message.channel.fetchMessages({ limit: 2 })
+	message.channel.messages.fetch({ limit: 2 })
 		.then(lastMessages => {
 			const lastMessage = lastMessages.last();
 			if (lastMessage.author.bot) return message.react('💩');

@@ -68,7 +68,7 @@ function mock(message) {
 
 function mockLast(message) {
 
-	message.channel.fetchMessages({ limit: 2 })
+	message.channel.messages.fetch({ limit: 2 })
 		.then(lastMessages => {
 			const lastMessage = lastMessages.last();
 			if (lastMessage.author.bot) return message.react('💩');
@@ -76,28 +76,6 @@ function mockLast(message) {
 			if (!lastMessageText) return;
 			const mockedMessage = lastMessageText.toSpongeCase().addOs().pepegaMega();
 			message.channel.send(mockedMessage);
-		})
-		.catch(console.error);
-
-}
-
-function mockUser(message) {
-
-	const id = message.mentions.users.first().id;
-
-	if (message.mentions.users.first().author.bot) return message.react('💩');
-
-	message.channel.fetchMessages({ limit: 20 })
-		.then(lastMessages => {
-			lastMessages = Array.from(lastMessages.values());
-			for (let i = 0; i < lastMessages.length; i++) {
-				if (id === lastMessages[i].author.id) {
-					if (!lastMessages[i].content) return;
-					const mockedMessage = lastMessages[i].content.toSpongeCase().addOs().pepegaMega();
-					message.channel.send(mockedMessage);
-					break;
-				}
-			}
 		})
 		.catch(console.error);
 
