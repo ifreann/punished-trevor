@@ -7,6 +7,9 @@ const { EmbedBuilder } = Discord;
 
 function slots(message) {
 
+	// prevent slots being used outside of #bot_command_spam in main server
+	if (message.guild.id === '227159445879259137' && message.channel.id !== '309774255560589312') return;
+
 	// the number of possible emojis
 	const difficulty = 4;
 
@@ -57,7 +60,7 @@ function slots(message) {
 		}
 	});
 
-	// "W I N !" in suitably loud ascii letters
+	// "W I N !" in loud ascii letters
 	const ascii = '```██╗    ██╗    ██╗    ███╗   ██╗    ██╗\n██║    ██║    ██║    ████╗  ██║    ██║\n██║ █╗ ██║    ██║    ██╔██╗ ██║    ██║\n██║███╗██║    ██║    ██║╚██╗██║    ╚═╝\n╚███╔███╔╝    ██║    ██║ ╚████║    ██╗\n ╚══╝╚══╝     ╚═╝    ╚═╝  ╚═══╝    ╚═╝```';
 
 	// send the embed along with the ascii if you won
