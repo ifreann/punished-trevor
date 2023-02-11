@@ -35,6 +35,9 @@ client.on('messageCreate', message => {
 	// ignore Trevor
 	if (authorIsTrevor) return;
 
+	// ignore all bots
+	if (message.author.bot) return;
+
 	// text match triggers
 	if (content.match(/^!e /) && authorIsDarren) evaluate(message, client);
 	else if (content.match(/^!poll/)) poll(message);
