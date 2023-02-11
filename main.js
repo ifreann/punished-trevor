@@ -1,7 +1,5 @@
 import Discord from 'discord.js';
-const GatewayIntentBits = { Discord };
 export const client = new Discord.Client({ intents: [3276799] }); // makes `client` available to modules
-let a = client;
 
 // import modules
 import acceptCriticism from './modules/acceptCriticism.js';
@@ -15,6 +13,7 @@ import say from './modules/say.js';
 import slots from './modules/slots.js';
 import utOgh from './modules/utOgh.js';
 import togglePin from './modules/togglePin.js';
+import when from './modules/when.js';
 
 // generic error/warning handling so Trevor doesn't just crash
 client.on('error', e => console.error(e));
@@ -54,6 +53,7 @@ client.on('messageCreate', message => {
 	else if (content.match(/^mock/i)) mock(message);
 	else if (content.match(/\b(good|bad)\s*bot\b/i)) acceptCriticism(message);
 	else if (content.match(/^!eoin$/i)) postImage(message, 'eoin');
+	else if (content.match(/^!when /i)) when(message);
 	
 	// always has a chance to trigger
 	if (authorIsMike) poopMike(message);
