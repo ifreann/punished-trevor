@@ -55,9 +55,6 @@ async function when(message) {
 	// sets page to a good width for Discord. Height doesn't matter
 	await page.setViewport({width: 770, height: 1200});
 
-	// target screenshot element
-	const element = await page.$('.vegas-content > .container');
-
 	// remove elements interfering with screenshot (cookies overlay, ads, buttons)
 	await page.evaluate(() => {
 		const selectors = '.qc-cmp2-container, .at-share-dock-outer, .adsense-fallback, .fa-pencil, .fa-image, .fa-calendar ,.add';
@@ -65,11 +62,19 @@ async function when(message) {
 			.forEach(el => el.parentNode.removeChild(el));
 	});
 
-	// screenshot is saved as an image buffer, not a file
-  const countdown = await element.screenshot();
+	// target screenshot element
+	const element = await page.$('.vegas-content > .container');
 
-	// send the image and close everything
-	message.channel.send({files: [{ attachment: countdown }]});
+	// if the element wasn't found, take a screenshot of the page and post it instead
+	if (!element) {
+		const screenshot = await page.screenshot();
+		message.channel.send(`Something killed me. Here's the last thing I saw before I died:`, {files: [{ attachment: screenshot }]});
+	}
+	else {
+		const screenshot = await element.screenshot();
+		message.channel.send({files: [{ attachment: screenshot }]});
+	}
+
 	await browser.close();
 	busy = false;
 
