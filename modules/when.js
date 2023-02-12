@@ -21,23 +21,25 @@ async function when(message) {
 	const browser = await puppeteer.launch({args: ['--no-sandbox', '--disable-setuid-sandbox']});
 	const page = await browser.newPage();
 
-	// set global timeout for wait events to infinite
-	page.setDefaultNavigationTimeout(0);
-
 	// go to site
-	await page.goto('https://yourcountdown.to/');
+	await page.goto('https://yourcountdown.to/', { waitUntil: ['load', 'domcontentloaded', 'networkidle0'] });
 
 	// accept cookies
-	const acceptButton = 'button[mode="primary"]';
-	await page.waitForSelector(acceptButton);
-	await page.click(acceptButton);
+	try {
+		const acceptButton = 'button[mode="primary"]';
+		await page.waitForSelector(acceptButton, { timeout: 1000 });
+		await page.click(acceptButton);
+	}
+	catch (e) {
+		// skip looking for the cookies button, it was probably already clicked
+	}
 
 	// type query into search box
   await page.type('#GlobalSearch', query);
 
-// wait 5 seconds for a search result. If nothing appears, it probably doesn't exist
+	// wait 3 seconds for a search result. If nothing appears, it probably doesn't exist
 	try {
-		await page.waitForSelector('.results-container > a', { timeout: 5000 });
+		await page.waitForSelector('.results-container > a', { timeout: 3000 });
 	}
 	catch (e) {
 		busy = false;
