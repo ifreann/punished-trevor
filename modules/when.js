@@ -37,6 +37,9 @@ async function when(message) {
 	// type query into search box
   await page.type('#GlobalSearch', query);
 
+	// wait half a second before proceeding, the site can show weird results if you go too fast
+	await new Promise(r => setTimeout(r, 500));
+
 	// wait 3 seconds for a search result. If nothing appears, it probably doesn't exist
 	try {
 		await page.waitForSelector('.results-container > a', { timeout: 3000 });
@@ -46,8 +49,6 @@ async function when(message) {
 		return message.channel.send(`No countdown found. It's either already out or the site is broken. Or you typed something dumb <:pepeW:1040297494929743892>`);
 	}
 
-	// wait half a second before proceeding, the site can show weird results if you go too fast
-	await new Promise(r => setTimeout(r, 500));
 	const href = await page.evaluate(() => document.querySelector('.results-container > a').href);
 
 	await page.goto(href, { waitUntil: ['load', 'domcontentloaded', 'networkidle0'] });
