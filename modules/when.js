@@ -31,9 +31,14 @@ async function when(message) {
 	await page.goto('https://yourcountdown.to/');
 
 	// accept cookies
-	const acceptButton = 'button[mode="primary"]';
-	await page.waitForSelector(acceptButton);
-	await page.click(acceptButton);
+	try {
+		const acceptButton = 'button[mode="primary"]';
+		await page.waitForSelector(acceptButton, { timeout: 1000 });
+		await page.click(acceptButton);
+	}
+	catch (e) {
+		// skip looking for the cookies button, it was probably already clicked
+	}
 
 	// type query into search box. Doesn't work consistently because of a bug, more info here: https://github.com/puppeteer/puppeteer/issues/1648#issuecomment-431755748
 	await page.type('#GlobalSearch', query, {delay: 100});
