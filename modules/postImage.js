@@ -3,7 +3,7 @@ export default postImage;
 // links to images to be posted in embed object
 const images = {
 	honk: {
-		url: 'https://i.imgur.com/H8prJzb.png',
+		url: 'https://cdn.discordapp.com/attachments/619900307664535582/1104018204830994462/023.png',
 		cooldown: 60,
 		deleteTriggerMessage: false
 	},
@@ -13,12 +13,12 @@ const images = {
 		deleteTriggerMessage: false
 	},
 	mikefoot: {
-		url: 'https://i.imgur.com/YkTM41E.png',
+		url: 'https://cdn.discordapp.com/attachments/619900307664535582/1104014473771090083/YkTM41E.png',
 		cooldown: 60,
 		deleteTriggerMessage: true
 	},
 	exasperatedPepe: {
-		url: 'https://i.imgur.com/VG3DkWB.jpg',
+		url: 'https://cdn.discordapp.com/attachments/619900307664535582/1104014641543258152/VG3DkWB.jpg',
 		cooldown: 60,
 		deleteTriggerMessage: false
 	},
