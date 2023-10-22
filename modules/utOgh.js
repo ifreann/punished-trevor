@@ -18,7 +18,7 @@ function utOgh(message) {
 			while (result.length - lengthSoFar < os * 2) result += v;
 		}
 	});
-	result = `***${result}***`;
+	result = `# ***${result}***`;
 
 	message.channel.send(result);
 
