@@ -41,6 +41,11 @@ const images = {
 		url: "https://cdn.discordapp.com/attachments/348582277342560257/971098566447730788/Screenshot_20220503-181811__01.jpg",
 		cooldown: 0,
 		deleteTriggerMessage: false
+	},
+	shad: {
+		url: "https://media.tenor.com/cwBfeeCx2Z4AAAAC/american-psycho-patrick-bateman.gif",
+		cooldown: 0,
+		deleteTriggerMessage: false
 	}
 };
 

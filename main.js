@@ -53,6 +53,7 @@ client.on('messageCreate', message => {
 	else if (content.match(/^mock/i)) mock(message);
 	else if (content.match(/\b(good|bad)\s*bot\b/i)) acceptCriticism(message);
 	else if (content.match(/^!eoin$/i)) postImage(message, 'eoin');
+	else if (content.match(/^!shad$/i)) postImage(message, 'shad');
 	else if (content.match(/^!when /i)) when(message);
 	
 	// always has a chance to trigger
