@@ -36,7 +36,7 @@ client.on('messageCreate', message => {
 	if (authorIsTrevor) return;
 
 	// do nothing if beta trevor is also taking commands in the trevordome
-	if (trevorBetaIsOnline) return;
+	if (!trevorBetaIsOnline) return;
 
 	// text match triggers
 	if (content.match(/^!e /) && authorIsDarren) evaluate(message, client);
