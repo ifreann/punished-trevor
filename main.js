@@ -1,5 +1,5 @@
 import Discord from 'discord.js';
-export const client = new Discord.Client({ intents: [3276799] }); // makes `client` available to modules
+export const client = new Discord.Client({ intents: [3276799] }); // makes `client` available to modules. 3276799 is a bitfield corresponding to bot permissions. 3276799 means "all permissions"
 
 // import modules
 import acceptCriticism from './modules/acceptCriticism.js';
@@ -13,13 +13,12 @@ import say from './modules/say.js';
 import slots from './modules/slots.js';
 import utOgh from './modules/utOgh.js';
 import togglePin from './modules/togglePin.js';
-import when from './modules/when.js';
 
 // generic error/warning handling so Trevor doesn't just crash
 client.on('error', e => console.error(e));
 client.on('warn', e => console.warn(e));
 
-// Login to Discord with your client's token
+// login to Discord with your client's token
 client.login(process.env.BOT_TOKEN);
 console.log('Trevor is running...');
 
@@ -30,10 +29,14 @@ client.on('messageCreate', message => {
 	const authorIsDarren = message.author.id === '71612859766800384';
 	const authorIsMike = message.author.id === '141641930349084672';
 	const authorIsHarry = message.author.id === '210155641468223499';
+	const trevorBetaIsOnline = checkIfTrevorBetaIsOnline(message);
 	const { content } = message;
 
 	// ignore Trevor
 	if (authorIsTrevor) return;
+
+	// do nothing if beta trevor is also taking commands in the trevordome
+	if (trevorBetaIsOnline) return;
 
 	// text match triggers
 	if (content.match(/^!e /) && authorIsDarren) evaluate(message, client);
@@ -54,9 +57,23 @@ client.on('messageCreate', message => {
 	else if (content.match(/\b(good|bad)\s*bot\b/i)) acceptCriticism(message);
 	else if (content.match(/^!eoin$/i)) postImage(message, 'eoin');
 	else if (content.match(/^!shad$/i)) postImage(message, 'shad');
-	// else if (content.match(/^!when /i)) when(message);
 	
 	// always has a chance to trigger
 	if (authorIsMike) poopMike(message);
 
 });
+
+function checkIfTrevorBetaIsOnline(message) {
+
+	// if this isn't the Trevordome, skip this function
+	if (message.channel.id === '517382587090731008') return false;
+
+	// if trevor beta is doing this, skip this function. This should only be done by main trevor
+	if (client.user.id === '1013832791420588223') return false;
+
+	// returns 'online' if 1013832791420588223 (trevor beta) is online. Returns false for anything else
+	return message.guild.members.fetch('1013832791420588223')
+		.then(user => user.presence.status)
+		.catch(e => false);
+
+}
