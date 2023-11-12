@@ -71,9 +71,9 @@ function checkIfTrevorBetaIsOnline(message) {
 	// if trevor beta is doing this, skip this function. This should only be done by main trevor
 	if (client.user.id === '1013832791420588223') return false;
 
-	// returns 'online' if 1013832791420588223 (trevor beta) is online. Returns false for anything else
+	// returns true if 1013832791420588223 (trevor beta) is online. Returns false for anything else
 	return message.guild.members.fetch('1013832791420588223')
-		.then(user => user.presence.status)
+		.then(user => user.presence.status === 'online')
 		.catch(e => false);
 
 }
