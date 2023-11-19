@@ -65,11 +65,8 @@ client.on('messageCreate', message => {
 
 function checkIfTrevorBetaIsOnline(message) {
 
-	// if this isn't the Trevordome, skip this function
-	if (message.channel.id === '517382587090731008') return false;
-
-	// if trevor beta is doing this, skip this function. This should only be done by main trevor
-	if (client.user.id === '1013832791420588223') return false;
+	// if trevor beta is doing this, skip this function. This should only be done by main trevor, and only in the Trevordome
+	if (client.user.id === '1013832791420588223' && message.channel.id === '517382587090731008') return false;
 
 	// returns true if 1013832791420588223 (trevor beta) is online. Returns false for anything else
 	return message.guild.members.fetch('1013832791420588223')
