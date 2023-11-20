@@ -11,7 +11,7 @@ function omegaPing(message) {
 	console.log(user);
 
 	// @ them 5 times, then dinkdonk. {user} becomes an @name in Discord when concatenated with a string
-	for (let i = 0; i < 5; i++) message.channel.send(`${user}`); 
+	for (let i = 0; i < 5; i++) message.channel.send(`# ${user}`); 
 	message.channel.send('https://cdn.7tv.app/emote/62f9cabd00630d5b2acd66f0/4x.gif');
 
 }
