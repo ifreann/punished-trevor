@@ -23,6 +23,7 @@
     "dayjs": "^1.11.4",
     "discord.js": "^14.3.0",
     "extract-date": "^2.8.2",
+    "jimp": "^0.22.10",
     "node-fetch": "^2.6.1",
     "puppeteer": "^19.6.3"
   }

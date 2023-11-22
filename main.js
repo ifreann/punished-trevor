@@ -13,7 +13,8 @@ import say from './modules/say.js';
 import slots from './modules/slots.js';
 import utOgh from './modules/utOgh.js';
 import togglePin from './modules/togglePin.js';
-import omegaPing from './modules/omegaPing.js'
+import omegaPing from './modules/omegaPing.js';
+import harry from './modules/harry.js';
 
 // generic error/warning handling so Trevor doesn't just crash
 client.on('error', e => console.error(e));
@@ -55,6 +56,7 @@ client.on('messageCreate', message => {
 	else if (content.match(/^!eoin$/i)) postImage(message, 'eoin');
 	else if (content.match(/^!shad$/i)) postImage(message, 'shad');
 	else if (content.match(/^!omegaping/i)) omegaPing(message);
+	else if (content.match(/^!harry/i)) harry(message);
 	
 	// always has a chance to trigger
 	if (authorIsMike) poopMike(message);
