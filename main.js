@@ -15,6 +15,7 @@ import utOgh from './modules/utOgh.js';
 import togglePin from './modules/togglePin.js';
 import omegaPing from './modules/omegaPing.js';
 import harry from './modules/harry.js';
+import evo from './modules/evo.js';
 
 // generic error/warning handling so Trevor doesn't just crash
 client.on('error', e => console.error(e));
@@ -57,6 +58,7 @@ client.on('messageCreate', message => {
 	else if (content.match(/^!shad$/i)) postImage(message, 'shad');
 	else if (content.match(/^!omegaping/i)) omegaPing(message);
 	else if (content.match(/^!harry/i)) harry(message);
+	else if (content.match(/^!evo$/i)) evo(message);
 	
 	// always has a chance to trigger
 	if (authorIsMike) poopMike(message);
