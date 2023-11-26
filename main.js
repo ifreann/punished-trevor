@@ -16,6 +16,7 @@ import togglePin from './modules/togglePin.js';
 import omegaPing from './modules/omegaPing.js';
 import harry from './modules/harry.js';
 import evo from './modules/evo.js';
+import fxtwitter from './modules/fxtwitter.js';
 
 // generic error/warning handling so Trevor doesn't just crash
 client.on('error', e => console.error(e));
@@ -62,5 +63,8 @@ client.on('messageCreate', message => {
 	
 	// always has a chance to trigger
 	if (authorIsMike) poopMike(message);
+
+	// if the message contains any x/twitter links, repost them as fxtwitter links so discord shows the embed properly
+	if (content.match(/https:\/\/(x|twitter)\.com/)) fxtwitter(message);
 
 });
