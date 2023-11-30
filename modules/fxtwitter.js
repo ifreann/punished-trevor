@@ -9,6 +9,9 @@ function fxtwitter(message) {
 		.match(/https:\/\/(x|twitter)\.com([^\s]+)/gi)
 		.map(v => v.replace(/(x|twitter)\.com/ig, "fxtwitter.com"));
 
-	message.channel.send(`Reposting X/Twitter links as FXTwitter links for Discord embeds ${getEmoji('apusmile')} 👍 \n\n${links.join('\n')}`);
+	message.channel.send(`Posted by ${message.author.displayName} ${getEmoji('apusmile')} 👍 \n\n${links.join('\n')}`);
+
+	// remove the original poster's message to cut down on spam
+	message.delete();
 
 }
