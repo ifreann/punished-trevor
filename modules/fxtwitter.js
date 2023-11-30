@@ -4,12 +4,10 @@ import getEmoji from './getEmoji.js';
 
 function fxtwitter(message) {
 
-	// get a list of all twitter links in the message and make them fxtwitter links
-	const links = message.content
-		.match(/https:\/\/(x|twitter)\.com([^\s]+)/gi)
-		.map(v => v.replace(/(x|twitter)\.com/ig, "fxtwitter.com"));
+	// reaplce twitter links in the message with fxtwitter links
+	const fixedMessage = message.content.replace(/(x|twitter)\.com/gi, `fxtwitter.com`);
 
-	message.channel.send(`Posted by ${message.author.displayName} ${getEmoji('apusmile')} 👍 \n\n${links.join('\n')}`);
+	message.channel.send(`Posted by ${message.author.displayName} ${getEmoji('apusmile')} 👍 \n\n${fixedMessage}`);
 
 	// remove the original poster's message to cut down on spam
 	message.delete();
