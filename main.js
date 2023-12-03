@@ -60,6 +60,7 @@ client.on('messageCreate', message => {
 	else if (content.match(/^!omegaping/i)) omegaPing(message);
 	else if (content.match(/^!harry/i)) harry(message);
 	else if (content.match(/^!evo$/i)) evo(message);
+	else if (content.match(/^!oli$/i)) postImage(message, 'oli');
 	
 	// always has a chance to trigger
 	if (authorIsMike) poopMike(message);

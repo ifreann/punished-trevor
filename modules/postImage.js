@@ -46,6 +46,11 @@ const images = {
 		url: "https://media.tenor.com/cwBfeeCx2Z4AAAAC/american-psycho-patrick-bateman.gif",
 		cooldown: 0,
 		deleteTriggerMessage: false
+	},
+	oli: {
+		url: "https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExNXpudmxxaTEybWZiaHIzeW50dGV4ZTRlZDVmcjVsa2U4MnNidGNoMiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/PiwyiGolGV8JhvYVcJ/giphy.gif",
+		cooldown: 0,
+		deleteTriggerMessage: false
 	}
 };
 
