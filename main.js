@@ -46,7 +46,7 @@ client.on('messageCreate', message => {
 	else if (content.match(/^!say /) && authorIsDarren) say(message);
 	else if (content.match(/^gabagool/i)) gabagool(message);
 	else if (content.match(/honk/i)) postImage(message, 'honk');
-	else if (content.match(/^!bruh$/i)) postImage(message, 'jose');
+	else if (content.match(/^!bruh$/i)) postImage(message, 'bruh');
 	else if (content.match(/peepoClap/i)) postImage(message, 'peepoClap');
 	else if (content.match(/widepeepoHappy/i)) postImage(message, 'widepeepoHappy');
 	else if (content.match(/pepeLaugh/i)) postImage(message, 'pepeLaugh');

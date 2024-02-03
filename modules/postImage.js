@@ -7,8 +7,8 @@ const images = {
 		cooldown: 60,
 		deleteTriggerMessage: false
 	},
-	jose: {
-		url: 'https://cdn.discordapp.com/attachments/348582277342560257/855118688389431336/Screen_Shot_2021-04-21_at_2.png',
+	bruh: {
+		url: ['https://cdn.discordapp.com/attachments/348582277342560257/855118688389431336/Screen_Shot_2021-04-21_at_2.png', 'https://cdn.discordapp.com/attachments/619900307664535582/1203389134257782844/bruh_lars_and_jin.png?ex=65d0ea77&is=65be7577&hm=01ef13fec3ce3ee97debbb579baa3b058941cdd5115eab9a44e8e73c3212620b&'],
 		cooldown: 0,
 		deleteTriggerMessage: false
 	},
@@ -59,9 +59,16 @@ const postedRecently = new Set();
 
 function postImage(message, imageReference) {
 
-	const { url, cooldown, deleteTriggerMessage } = images[imageReference];
+	let { url, cooldown, deleteTriggerMessage } = images[imageReference];
 
 	const messageOnlyContainsTrigger = message.content.match(RegExp(`^${imageReference}$`, 'i'));
+
+	// if the url is an array, make it so there's a random chance of posting any of the images in it
+	if (typeof url !== 'string') {
+		const numberOfImages = url.length;
+		const index = Math.round(Math.random());
+		url = url[index];
+	}
 
 	// if the image was postedRecently, put a cooldown on the posted image so it can't be spammed
 	if (!postedRecently.has(imageReference)) {
