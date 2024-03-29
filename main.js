@@ -17,6 +17,7 @@ import omegaPing from './modules/omegaPing.js';
 import harry from './modules/harry.js';
 import evo from './modules/evo.js';
 import fxtwitter from './modules/fxtwitter.js';
+import roll from './modules/roll.js';
 
 // generic error/warning handling so Trevor doesn't just crash
 client.on('error', e => console.error(e));
@@ -61,6 +62,7 @@ client.on('messageCreate', message => {
 	else if (content.match(/^!harry/i)) harry(message);
 	else if (content.match(/^!evo$/i)) evo(message);
 	else if (content.match(/^!oli$/i)) postImage(message, 'oli');
+	else if (content.match(/^!roll /i)) roll(message);
 	
 	// always has a chance to trigger
 	if (authorIsMike) poopMike(message);
