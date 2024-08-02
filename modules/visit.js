@@ -14,7 +14,7 @@ function visit(message) {
 	const minutes = Math.floor((diff - days * 86400 - hours * 3600) / 60);
 	const seconds = diff - days * 86400 - hours * 3600 - minutes * 60;
 	
-	let str = `Evo 2024 will take place in ${days} ${days === 1 ? 'day' : 'days'}`;
+	let str = `${days} ${days === 1 ? 'day' : 'days'}`;
 	str += `${hours === 0 ? '' : hours === 1 ? `, ${hours} hour` : `, ${hours} hours`}`;
 	str += `${minutes === 0 ? '' : minutes === 1 ? `, ${minutes} minute` : `, ${minutes} minutes`}`;
 	str += `${seconds === 0 ? '' : seconds === 1 ? ` and ${seconds} second` : ` and ${seconds} seconds`}`;
