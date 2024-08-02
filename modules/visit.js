@@ -1,12 +1,12 @@
-export default evo;
+export default visit;
 
 import getEmoji from './getEmoji.js';
 import differenceInSeconds from "date-fns/differenceInSeconds/index.js";
 import fromUnixTime from "date-fns/fromUnixTime/index.js";
 
-function evo(message) {
+function visit(message) {
 
-	const evoDate = fromUnixTime(1721257200); // 18th July 2024
+	const evoDate = fromUnixTime(1726873200); // 18th July 2024
 
 	const diff = differenceInSeconds(evoDate, new Date());
 	const days = Math.floor(diff / 86400);

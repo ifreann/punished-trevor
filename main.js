@@ -15,7 +15,7 @@ import utOgh from './modules/utOgh.js';
 import togglePin from './modules/togglePin.js';
 import omegaPing from './modules/omegaPing.js';
 import harry from './modules/harry.js';
-import evo from './modules/evo.js';
+import visit from './modules/visit.js';
 import fxtwitter from './modules/fxtwitter.js';
 import roll from './modules/roll.js';
 
@@ -60,7 +60,7 @@ client.on('messageCreate', message => {
 	else if (content.match(/^!shad$/i)) postImage(message, 'shad');
 	else if (content.match(/^!omegaping/i)) omegaPing(message);
 	else if (content.match(/^!harry/i)) harry(message);
-	else if (content.match(/^!evo$/i)) evo(message);
+	else if (content.match(/^!visit$/i)) visit(message);
 	else if (content.match(/^!oli$/i)) postImage(message, 'oli');
 	else if (content.match(/^!roll /i)) roll(message);
 	
