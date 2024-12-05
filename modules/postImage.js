@@ -18,7 +18,7 @@ const images = {
 		deleteTriggerMessage: true
 	},
 	exasperatedPepe: {
-		url: 'https://cdn.discordapp.com/attachments/619900307664535582/1104014641543258152/VG3DkWB.jpg',
+		url: 'https://cdn.discordapp.com/attachments/619900307664535582/1314034458743279616/disparaging.png?ex=67524d74&is=6750fbf4&hm=bb7ba1de261d5e93e79bfbc5fccd8dc22fe080927e11d858202f63b883c7397e&',
 		cooldown: 60,
 		deleteTriggerMessage: false
 	},
