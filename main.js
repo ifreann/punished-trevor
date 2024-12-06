@@ -18,7 +18,6 @@ import harry from './modules/harry.js';
 import visit from './modules/visit.js';
 import fxtwitter from './modules/fxtwitter.js';
 import roll from './modules/roll.js';
-import poe from './modules/poe.js';
 
 // generic error/warning handling so Trevor doesn't just crash
 client.on('error', e => console.error(e));
@@ -64,7 +63,6 @@ client.on('messageCreate', message => {
 	else if (content.match(/^!visit$/i)) visit(message);
 	else if (content.match(/^!oli$/i)) postImage(message, 'oli');
 	else if (content.match(/^!roll /i)) roll(message);
-	else if (content.match(/^!poe$/i)) poe(message);
 	
 	// always has a chance to trigger
 	if (authorIsMike) poopMike(message);
