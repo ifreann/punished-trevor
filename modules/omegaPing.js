@@ -2,8 +2,11 @@ export default omegaPing;
 
 function omegaPing(message) {
 
+	// let other channels abuse this all they like
+	const serverIsGoons = message.guild.id === '227159445879259137';
+
 	// poop the user if they @'d anything but 1 person
-	if (message.mentions.users.size !== 1) return message.react('💩');
+	if (!serverIsGoons && message.mentions.users.size !== 1) return message.react('💩');
 
 	// get the @'d user
 	const user = message.mentions.users.first();
