@@ -6,7 +6,7 @@ import fromUnixTime from "date-fns/fromUnixTime/index.js";
 
 function visit(message) {
 
-	const evoDate = fromUnixTime(1743299160); // Sun Mar 30 2025 02:46:00
+	const evoDate = fromUnixTime(1751108400); // Sat Jun 28 2025 11:00:00 GMT+0000
 
 	const diff = differenceInSeconds(evoDate, new Date());
 	const days = Math.floor(diff / 86400);
