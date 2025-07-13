@@ -34,6 +34,7 @@ client.on('messageCreate', message => {
 	const authorIsDarren = message.author.id === '71612859766800384';
 	const authorIsMike = message.author.id === '141641930349084672';
 	const authorIsHarry = message.author.id === '210155641468223499';
+	const authorIsOli = message.author.id === '98256696954097664';
 	const { content } = message;
 
 	// ignore Trevor
@@ -50,7 +51,7 @@ client.on('messageCreate', message => {
 	else if (content.match(/^!bruh$/i)) postImage(message, 'bruh');
 	else if (content.match(/peepoClap/i)) postImage(message, 'peepoClap');
 	else if (content.match(/widepeepoHappy/i)) postImage(message, 'widepeepoHappy');
-	else if (content.match(/pepeLaugh/i)) postImage(message, 'pepeLaugh');
+	else if (content.match(/pepeLaugh/i) && !authorIsOli) postImage(message, 'pepeLaugh');
 	else if (content.match(/mikefoot/i)) postImage(message, 'mikefoot');
 	else if (content.match(/^!slots$/i)) slots(message);
 	else if (content.match(/\bu+\s*t+\s*o+\s*g+\s*h+\b/i)) utOgh(message);
