@@ -51,6 +51,11 @@ const images = {
 		url: "https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExNXpudmxxaTEybWZiaHIzeW50dGV4ZTRlZDVmcjVsa2U4MnNidGNoMiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/PiwyiGolGV8JhvYVcJ/giphy.gif",
 		cooldown: 0,
 		deleteTriggerMessage: false
+	},
+	humid: {
+		url: "https://media.discordapp.net/attachments/1165108811565117521/1480790604781715546/image.png?ex=69b0f537&is=69afa3b7&hm=45a6e8db49122ac8544552640c922da8dbd5a0d35c7c30710ee1fb480ae07ffd&=&format=webp&quality=lossless",
+		cooldown: 0,
+		deleteTriggerMessage: false
 	}
 };
 
