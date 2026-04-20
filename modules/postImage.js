@@ -56,6 +56,11 @@ const images = {
 		url: "https://media.discordapp.net/attachments/1165108811565117521/1480790604781715546/image.png?ex=69b0f537&is=69afa3b7&hm=45a6e8db49122ac8544552640c922da8dbd5a0d35c7c30710ee1fb480ae07ffd&=&format=webp&quality=lossless",
 		cooldown: 0,
 		deleteTriggerMessage: false
+	},
+	weeking: {
+		url: "https://media.discordapp.net/attachments/1165108811565117521/1495897502191194132/G-PDfhzXQAEPJ9A.png?ex=69e7ea9c&is=69e6991c&hm=f9edaef5582d856a7ab8eaa088874fad9463f03634eae59c9155e8fe6751f1fd&=&format=webp&quality=lossless",
+		cooldown: 0,
+		deleteTriggerMessage: false
 	}
 };
 
