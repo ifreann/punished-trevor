@@ -60,7 +60,8 @@ const images = {
 	weeking: {
 		url: "https://media.discordapp.net/attachments/1165108811565117521/1495897502191194132/G-PDfhzXQAEPJ9A.png?ex=69e7ea9c&is=69e6991c&hm=f9edaef5582d856a7ab8eaa088874fad9463f03634eae59c9155e8fe6751f1fd&=&format=webp&quality=lossless",
 		cooldown: 0,
-		deleteTriggerMessage: false
+		deleteTriggerMessage: false,
+		caption: "it's the freaking weeking baby!!"
 	}
 };
 
@@ -69,7 +70,7 @@ const postedRecently = new Set();
 
 function postImage(message, imageReference) {
 
-	let { url, cooldown, deleteTriggerMessage } = images[imageReference];
+	let { url, cooldown, deleteTriggerMessage, caption } = images[imageReference];
 
 	const messageOnlyContainsTrigger = message.content.match(RegExp(`^${imageReference}$`, 'i'));
 
@@ -79,6 +80,9 @@ function postImage(message, imageReference) {
 		const index = Math.round(Math.random());
 		url = url[index];
 	}
+
+	// if a caption goes along with the image, post that first
+	if (caption) message.channel.send(caption);
 
 	// if the image was postedRecently, put a cooldown on the posted image so it can't be spammed
 	if (!postedRecently.has(imageReference)) {
