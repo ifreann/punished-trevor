@@ -66,6 +66,7 @@ client.on('messageCreate', message => {
 	else if (content.match(/^!roll /i)) roll(message);
 	else if (content.match(/^!humid$/i)) postImage(message, 'humid');
 	else if (content.match(/^!weeking$/i)) postImage(message, 'weeking');
+	else if (content.match(/^!retarded$/i)) postImage(message, 'retarded');
 	
 	// always has a chance to trigger
 	if (authorIsMike) poopMike(message);

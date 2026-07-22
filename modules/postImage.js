@@ -62,6 +62,11 @@ const images = {
 		cooldown: 0,
 		deleteTriggerMessage: false,
 		caption: "it's the freaking weeking baby!!"
+	},
+	retarded: {
+		url: "https://media.discordapp.net/attachments/348582277342560257/1529549408658653334/image.png?ex=6a625764&is=6a6105e4&hm=f0c7dc7ae536e3362e4b541a3bac81b9d462dd288a5e9fa9db3cd3aea9b75a18&=&format=webp&quality=lossless",
+		cooldown: 0,
+		deleteTriggerMessage: false
 	}
 };
 
